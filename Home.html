@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>College Course Registration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>College Course Registration</h1>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="Login.html">Login</a></li>
+            <li><a href="Register For Class.html">Register For Class</a></li>
+            <li><a href="Schedule.html">Schedule</a></li>
+        </ul>
+    </nav>
+
+    <h1>Authorize</h1>
+    <p id="welcomeMessage"></p>
+    <div id="notification" class="hidden"></div>
+    <div id="teacherActions" class="hidden">
+        <h2>Teacher Actions</h2>
+        <button><a href="Schedule.html" class="link-button">Update Courses</a></button>
+        <button><a href="Register For Class.html" class="link-button">Add Courses</a></button>
+    </div>
+    <div id="studentActions" class="hidden">
+        <h2>Student Actions</h2>
+        <button><a href="Login.html" class="link-button">Login</a></button>
+        <button><a href="Register For Class.html" class="link-button">Register For Class</a></button>
+        <button><a href="Schedule.html" class="link-button">View Schedule</a></button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const userRole = localStorage.getItem('userRole'); 
+            const welcomeMessage = document.getElementById('welcomeMessage');
+            const teacherActions = document.getElementById('teacherActions');
+            const studentActions = document.getElementById('studentActions');
+
+            if (userRole === 'teacher') {
+                welcomeMessage.textContent = "Welcome, Teacher!";
+                teacherActions.classList.remove('hidden');
+            } else if (userRole === 'student') {
+                welcomeMessage.textContent = "Welcome, Student!";
+                studentActions.classList.remove('hidden');
+            } else {
+                welcomeMessage.textContent = "Please log in to access your actions.";
+            }
+        });
+    </script>
+
+</body>
+</html>

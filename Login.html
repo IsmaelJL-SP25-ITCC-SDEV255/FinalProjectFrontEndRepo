@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>College Course Registration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>College Course Registration</h1>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="Login.html">Login</a></li>
+            <li><a href="Register For Class.html">Register For Class</a></li>
+            <li><a href="Schedule.html">Schedule</a></li>
+        </ul>
+    </nav>
+    <header>
+        <h1>Login to Your Course</h1>
+    </header>
+     
+    <div class="login-container">
+        <form id="login-form">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            
+            <button type="button" onclick="redirectToRegister()">Login</button>
+        </form>
+    </div>
+
+  <script>
+        function redirectToRegister() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username && password) {
+
+                localStorage.setItem('username', username);
+                localStorage.setItem('password', password);
+                
+                window.location.href = 'Register For Class.html';
+            } else {
+                alert('Please enter both username and password.');
+            }
+        }
+    </script>
+
+
+</body>
+</html>

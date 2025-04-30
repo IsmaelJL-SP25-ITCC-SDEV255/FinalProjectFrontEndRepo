@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>College Course Registration</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="Courses" href="Courses.html">
+</head>
+<body>
+
+    <h1>College Course Registration</h1>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="Login.html">Login</a></li>
+            <li><a href="Register For Class.html">Register For Class</a></li>
+            <li><a href="Schedule.html">Schedule</a></li>
+        </ul>
+    </nav>
+    <h1>Class Schedule</h1>
+    <table id="schedule-table">
+        <thead>
+            <tr>
+                <th>Course Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
+    <button onclick="window.location.href='Register For Class.html'">Back to Register For Class</button>
+    <script>
+        function loadSchedule() {
+            const registeredClasses = JSON.parse(localStorage.getItem('registeredClasses')) || [];
+            const scheduleTable = document.getElementById('schedule-table').getElementsByTagName('tbody')[0];
+            
+            registeredClasses.forEach((entry, index) => {
+                const newRow = scheduleTable.insertRow();
+                const courseCell = newRow.insertCell(0);
+                const actionCell = newRow.insertCell(1);
+
+                courseCell.textContent = entry.courseName;
+
+                const dropButton = document.createElement('button');
+                dropButton.textContent = 'Drop';
+                dropButton.onclick = () => dropClass(index);
+                actionCell.appendChild(dropButton);
+            });
+        }
+
+        function dropClass(index) {
+            let registeredClasses = JSON.parse(localStorage.getItem('registeredClasses')) || [];
+            registeredClasses.splice(index, 1); 
+            localStorage.setItem('registeredClasses', JSON.stringify(registeredClasses)); 
+            location.reload(); 
+        }
+
+        function goToRegister() {
+            window.location.href = "Register For Class.html";
+        }
+
+        window.onload = loadSchedule;
+    </script>
+
+</body>
+</html>
